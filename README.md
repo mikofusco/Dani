@@ -75,6 +75,15 @@ All colors, fonts and type sizes live at the top of `css/style.css` under
 Fonts import + `--font-display` / `--font-body` variables for different
 typefaces.
 
+## Dark mode
+
+Every page ships with a light and dark palette. It follows the visitor's OS
+setting by default; the circular sun/moon button in the nav lets them
+override that manually, and the choice is remembered in `localStorage`. The
+dark palette lives right next to the light one in `css/style.css` — look for
+the `@media (prefers-color-scheme: dark)` block and the matching
+`:root[data-theme="dark"]` block, and edit both together when you reskin.
+
 ## Contact form
 
 `contact.html` includes a simple form with no backend wired up. Point the

@@ -2,7 +2,33 @@
 // PORTFOLIO TEMPLATE — shared behavior for every page
 // ==========================================================================
 
+(() => {
+  /* ---- Dark mode: apply saved/system preference before first paint ---- */
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || saved === 'light') {
+    document.documentElement.setAttribute('data-theme', saved);
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
+  /* ---- Dark mode toggle button ---- */
+  const themeToggle = document.querySelector('.theme-toggle');
+  if (themeToggle) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const isDark = () => {
+      const explicit = document.documentElement.getAttribute('data-theme');
+      if (explicit) return explicit === 'dark';
+      return prefersDark.matches;
+    };
+    themeToggle.setAttribute('aria-pressed', isDark() ? 'true' : 'false');
+    themeToggle.addEventListener('click', () => {
+      const next = isDark() ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeToggle.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+    });
+  }
+
   /* ---- Mobile nav toggle ---- */
   const toggle = document.querySelector('.nav-toggle');
   const links  = document.querySelector('.nav-links');

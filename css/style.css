@@ -11,11 +11,17 @@
   --bg:            #f6f3ee;
   --bg-alt:        #ece7dd;
   --ink:           #14120f;
-  --ink-soft:      #55504a;
-  --line:          #d9d2c4;
-  --accent:        #ff4d1c;
-  --accent-ink:    #14120f;
+  --ink-soft:      #56505f;
+  --line:          #ddd0da;
+  --accent:        #7b2fd6;
+  --accent-ink:    #fdfbff;
   --paper:         #fffdf9;
+  --ph-stripe:     #efe9dd;
+
+  /* Marquee band stays a fixed dark stripe in both themes on purpose —
+     it's an accent band, not page chrome, so it doesn't invert with --ink/--bg. */
+  --marquee-bg:    #14121e;
+  --marquee-ink:   #f6f3ee;
 
   /* ---- Type ---- */
   --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -33,6 +39,35 @@
   --ease: cubic-bezier(.22,.61,.36,1);
 }
 
+/* ---- Dark mode ----
+   Follows the visitor's OS preference by default; a manual toggle
+   (see .theme-toggle in js/main.js) overrides it via [data-theme] and
+   remembers the choice in localStorage. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:            #16121e;
+    --bg-alt:        #1e1828;
+    --ink:           #f3efe9;
+    --ink-soft:      #b8adc7;
+    --line:          #332a44;
+    --accent:        #b98bff;
+    --accent-ink:    #16121e;
+    --paper:         #201a2c;
+    --ph-stripe:     #2a2238;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:            #16121e;
+  --bg-alt:        #1e1828;
+  --ink:           #f3efe9;
+  --ink-soft:      #b8adc7;
+  --line:          #332a44;
+  --accent:        #b98bff;
+  --accent-ink:    #16121e;
+  --paper:         #201a2c;
+  --ph-stripe:     #2a2238;
+}
+
 *, *::before, *::after{ box-sizing: border-box; }
 
 html{ scroll-behavior: smooth; }
@@ -47,6 +82,7 @@ body{
   font-size: var(--fs-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  transition: background .3s var(--ease), color .3s var(--ease);
 }
 
 img{ max-width: 100%; display: block; }
@@ -135,6 +171,37 @@ h1,h2,h3,h4,p{ margin: 0; }
 .nav-links a:hover::after,
 .nav-links a[aria-current="page"]::after{ right: 0; }
 
+.nav-right{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  flex: none;
+  transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
+}
+.theme-toggle:hover{ border-color: var(--accent); transform: translateY(-1px); }
+.theme-toggle svg{ width: 16px; height: 16px; display: block; }
+.theme-toggle .icon-sun{ display: none; }
+.theme-toggle .icon-moon{ display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-sun{ display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon{ display: none; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun{ display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon{ display: none; }
+}
+
 .nav-toggle{
   display: none;
   flex-direction: column;
@@ -216,8 +283,8 @@ h1,h2,h3,h4,p{ margin: 0; }
 .marquee{
   border-bottom: 1px solid var(--line);
   overflow: hidden;
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--marquee-bg);
+  color: var(--marquee-ink);
   padding: .9rem 0;
 }
 .marquee-track{
@@ -264,7 +331,7 @@ h1,h2,h3,h4,p{ margin: 0; }
   border-radius: 4px;
   overflow: hidden;
   background:
-    repeating-linear-gradient(135deg, var(--paper) 0 12px, #efe9dd 12px 24px);
+    repeating-linear-gradient(135deg, var(--paper) 0 12px, var(--ph-stripe) 12px 24px);
   border: 1px solid var(--line);
   display: flex;
   align-items: center;
