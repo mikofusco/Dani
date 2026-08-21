@@ -13,14 +13,11 @@ work.html                 Full project archive (all project cards)
 about.html                Bio, stats, tools/skills, process
 contact.html              Contact info + simple form
 css/style.css             All styling — colors, fonts & spacing as CSS variables
-js/main.js                Mobile nav, scroll reveals, footer year, cursor dot
+js/main.js                Mobile nav, scroll reveals, footer year, dark mode toggle
 work/
   brand-identity.html         Project 01 — Brand Identity
-  experiential-activation.html Project 02 — Experiential / Activation
-  ad-campaign.html            Project 03 — Advertising Campaign
-  packaging-system.html       Project 04 — Packaging & Brand System
-  environmental-installation.html Project 05 — Environmental Design
-  digital-campaign.html       Project 06 — Digital & Social
+  ad-campaign.html             Project 02 — Advertising Campaign
+  environmental-installation.html Project 03 — Environmental Design
   _template.html               Blank case-study template — duplicate this for new projects
 ```
 
@@ -74,6 +71,15 @@ All colors, fonts and type sizes live at the top of `css/style.css` under
 `:root`. Change `--accent` for a different brand color, or swap the Google
 Fonts import + `--font-display` / `--font-body` variables for different
 typefaces.
+
+## Dark mode
+
+Every page ships with a light and dark palette. It follows the visitor's OS
+setting by default; the circular sun/moon button in the nav lets them
+override that manually, and the choice is remembered in `localStorage`. The
+dark palette lives right next to the light one in `css/style.css` — look for
+the `@media (prefers-color-scheme: dark)` block and the matching
+`:root[data-theme="dark"]` block, and edit both together when you reskin.
 
 ## Contact form
 
