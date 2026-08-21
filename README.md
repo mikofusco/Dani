@@ -13,14 +13,11 @@ work.html                 Full project archive (all project cards)
 about.html                Bio, stats, tools/skills, process
 contact.html              Contact info + simple form
 css/style.css             All styling — colors, fonts & spacing as CSS variables
-js/main.js                Mobile nav, scroll reveals, footer year, cursor dot
+js/main.js                Mobile nav, scroll reveals, footer year, dark mode toggle
 work/
   brand-identity.html         Project 01 — Brand Identity
-  experiential-activation.html Project 02 — Experiential / Activation
-  ad-campaign.html            Project 03 — Advertising Campaign
-  packaging-system.html       Project 04 — Packaging & Brand System
-  environmental-installation.html Project 05 — Environmental Design
-  digital-campaign.html       Project 06 — Digital & Social
+  ad-campaign.html             Project 02 — Advertising Campaign
+  environmental-installation.html Project 03 — Environmental Design
   _template.html               Blank case-study template — duplicate this for new projects
 ```
 
