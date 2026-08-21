@@ -605,19 +605,7 @@ h1,h2,h3,h4,p{ margin: 0; }
 .center{ text-align: center; }
 .small{ font-size: .85rem; color: var(--ink-soft); }
 
-/* Custom cursor dot (progressive enhancement, desktop only) */
-.cursor-dot{
-  position: fixed;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  pointer-events: none;
-  z-index: 999;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-  transition: opacity .2s;
-  opacity: 0;
-}
+/* Custom cursor — desktop/mouse only; touch devices keep the system default */
 @media (hover: hover) and (pointer: fine){
-  .cursor-dot{ opacity: 1; }
+  body{ cursor: url("../assets/cursor/cat-cursor.png") 8 8, auto; }
 }

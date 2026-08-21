@@ -64,15 +64,4 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
   });
-
-  /* ---- Custom cursor dot (desktop only, purely decorative) ---- */
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const dot = document.createElement('div');
-    dot.className = 'cursor-dot';
-    document.body.appendChild(dot);
-    window.addEventListener('mousemove', (e) => {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-    });
-  }
 });
